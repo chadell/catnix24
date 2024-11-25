@@ -284,7 +284,7 @@ class RequestPeeringCATNIX(Job):
                     )
 
                 self.logger.info("Peerings between %s and %s defined", remote_asn, my_asn)
-                self.logger.info("Connection details sent to %s", member["contact_email"][0])
+                self.logger.info("Connection details sent to %s", member["name"])
                 break
 
 name = "CATNIX Jobs"
