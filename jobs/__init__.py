@@ -134,10 +134,14 @@ class LoadCATNIXData(Job):
 
 
         for member in members:
+            contact_data = {}
+            if "contact_email" in member:
+                contact_data["email"] = member["contact_email"][0]
+            if "contact_phone" in member:
+                contact_data["phone"] = member["contact_phone"][0]
             contact, _ = Contact.objects.get_or_create(
                 name=member["name"],
-                email=member["contact_email"][0],
-                phone=member["contact_phone"][0],
+                **contact_data
             )
             ContactAssociation.objects.get_or_create(
                 contact=contact,
