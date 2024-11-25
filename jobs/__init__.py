@@ -280,4 +280,4 @@ class RequestPeeringCATNIX(Job):
                 break
 
 
-register_jobs([LoadCATNIXData, RequestPeeringCATNIX])
+register_jobs(LoadCATNIXData, RequestPeeringCATNIX)
