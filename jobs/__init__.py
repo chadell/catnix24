@@ -143,13 +143,6 @@ class LoadCATNIXData(Job):
                 name=member["name"],
                 **contact_data
             )
-            ContactAssociation.objects.get_or_create(
-                contact=contact,
-                status=Status.objects.get(name="Active"),
-                associated_object_id=tenant.pk,
-                associated_object_type=ContentType.objects.get_for_model(Tenant),
-                role=member_role
-            )
 
             if member_asn == member["asnum"]:
                 user_tenant, _ = Tenant.objects.get_or_create(
@@ -200,11 +193,19 @@ class LoadCATNIXData(Job):
 
                 self.logger.info("The member %s has been located in %s", member["name"], peering_device.location.name)
             else:
-                AutonomousSystem.objects.get_or_create(
+                asn, _ = AutonomousSystem.objects.get_or_create(
                     asn=member["asnum"],
                     status=asn_status,
                     description=member["name"]
                 )
+
+            ContactAssociation.objects.get_or_create(
+                contact=contact,
+                status=Status.objects.get(name="Active"),
+                associated_object_id=asn.pk,
+                associated_object_type=ContentType.objects.get_for_model(AutonomousSystem),
+                role=member_role
+            )
 
 
 class RequestPeeringCATNIX(Job):
