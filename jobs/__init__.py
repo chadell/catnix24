@@ -45,6 +45,7 @@ class LoadCATNIXData(Job):
         support_role, _ = Role.objects.get_or_create(name="Support")
         support_role.content_types.set([ContentType.objects.get_for_model(ContactAssociation)])
         ContactAssociation.objects.get_or_create(
+            contact=contact,
             status=Status.objects.get(name="Active"),
             associated_object_id=tenant.pk,
             associated_object_type=ContentType.objects.get_for_model(Tenant),
@@ -139,6 +140,7 @@ class LoadCATNIXData(Job):
                 phone=member["contact_hone"][0],
             )
             ContactAssociation.objects.get_or_create(
+                contact=contact,
                 status=Status.objects.get(name="Active"),
                 associated_object_id=tenant.pk,
                 associated_object_type=ContentType.objects.get_for_model(Tenant),
