@@ -137,7 +137,7 @@ class LoadCATNIXData(Job):
             contact, _ = Contact.objects.get_or_create(
                 name=member["name"],
                 email=member["contact_email"][0],
-                phone=member["contact_hone"][0],
+                phone=member["contact_phone"][0],
             )
             ContactAssociation.objects.get_or_create(
                 contact=contact,
