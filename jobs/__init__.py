@@ -278,8 +278,9 @@ class RequestPeeringCATNIX(Job):
                         autonomous_system=remote_asn
                     )
 
-                self.logger.info("Peerings between %s defined", remote_asn)
+                self.logger.info("Peerings between %s and %s defined", remote_asn, my_asn)
+                self.logger.info("Connection details sent to %s", member["contact_email"][0])
                 break
 
 name = "CATNIX Jobs"
-register_jobs(LoadCATNIXData, RequestPeeringCATNIX)
+#register_jobs(LoadCATNIXData, RequestPeeringCATNIX)
