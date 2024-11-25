@@ -281,5 +281,5 @@ class RequestPeeringCATNIX(Job):
                 self.logger.info("Peerings between %s defined", remote_asn)
                 break
 
-
+name = "CATNIX Jobs"
 register_jobs(LoadCATNIXData, RequestPeeringCATNIX)
